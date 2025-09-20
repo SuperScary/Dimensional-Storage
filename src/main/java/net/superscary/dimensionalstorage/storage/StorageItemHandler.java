@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public final class StorageItemHandler implements IItemHandler {
+
     private final ItemStack owner;
     private final int size;
     private final int slotLimit;
@@ -24,8 +25,6 @@ public final class StorageItemHandler implements IItemHandler {
         this.slotLimit = Math.max(1, slotLimit);
         ensureSize();
     }
-
-    /* —— component IO —— */
 
     private ItemContainerContents contents() {
         ItemContainerContents c = owner.get(DSDataComponents.STORAGE_CONTENTS.get());
@@ -47,8 +46,6 @@ public final class StorageItemHandler implements IItemHandler {
         // copyToList already sized; writing back ensures component exists
         writeBack(list);
     }
-
-    /* —— IItemHandler —— */
 
     @Override
     public int getSlots() {

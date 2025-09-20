@@ -32,11 +32,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class AntimatterItem extends BaseItem implements IStorage {
+public class DarkMatterItem extends BaseItem implements IStorage {
 
-    public AntimatterItem(Properties properties) {
+    public DarkMatterItem(Properties properties) {
         super(properties.stacksTo(1).rarity(Rarity.EPIC)
-                .component(DSDataComponents.ANTIMATTER_STABILITY.get(), Stability.UNSTABLE));
+                .component(DSDataComponents.DARKMATTER_STABILITY.get(), Stability.UNSTABLE));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class AntimatterItem extends BaseItem implements IStorage {
         final AABB box = source.getBoundingBox().inflate(RADIUS);
 
         for (ItemEntity it : level.getEntitiesOfClass(ItemEntity.class, box, e -> e != source && e.isAlive())) {
-            if (it.getItem().getItem() instanceof AntimatterItem) continue;
+            if (it.getItem().getItem() instanceof DarkMatterItem) continue;
 
             Vec3 toCenter = center.subtract(it.position());
             double distSqr = toCenter.lengthSqr();
@@ -90,7 +90,7 @@ public class AntimatterItem extends BaseItem implements IStorage {
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level,  @NotNull Player player, @NotNull InteractionHand usedHand) {
         ItemStack inHand = player.getItemInHand(usedHand);
 
-        if (!this.components().has(DSDataComponents.ANTIMATTER_STABILITY.get())) return InteractionResultHolder.pass(inHand);
+        if (!this.components().has(DSDataComponents.DARKMATTER_STABILITY.get())) return InteractionResultHolder.pass(inHand);
 
         if (player.isShiftKeyDown() && !FMLEnvironment.production) {
             if (!level.isClientSide()) {
@@ -173,7 +173,7 @@ public class AntimatterItem extends BaseItem implements IStorage {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.add(Component.translatable("item.dimensionalstorage.antimatter." + this.getStability(stack).name().toLowerCase()));
+        tooltipComponents.add(Component.translatable("item.dimensionalstorage.darkmatter." + this.getStability(stack).name().toLowerCase()));
     }
 
     @Override
@@ -182,11 +182,11 @@ public class AntimatterItem extends BaseItem implements IStorage {
     }
 
     public void setStability(Stability stability, ItemStack stack) {
-        stack.set(DSDataComponents.ANTIMATTER_STABILITY.get(), stability);
+        stack.set(DSDataComponents.DARKMATTER_STABILITY.get(), stability);
     }
 
     public Stability getStability(ItemStack stack) {
-        Stability s = stack.get(DSDataComponents.ANTIMATTER_STABILITY.get());
+        Stability s = stack.get(DSDataComponents.DARKMATTER_STABILITY.get());
         if (s == null) return Stability.UNSTABLE;
         return s;
     }

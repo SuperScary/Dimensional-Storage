@@ -26,7 +26,7 @@ public class DSTab {
     public static void init (Registry<CreativeModeTab> registry) {
         var tab = CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + DimensionalStorage.MODID))
-                .icon(DSItems.ELECTRIC_CIRCUIT_BASE::stack)
+                .icon(DSItems.DARK_MATTER::stack)
                 .displayItems(DSTab::buildDisplayItems)
                 .build();
         Registry.register(registry, Keys.MAIN, tab);

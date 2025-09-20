@@ -30,7 +30,7 @@ public class ModEnLangProvider extends LanguageProvider implements IDataProvider
 
     protected void addManualStrings () {
         add("itemGroup." + DimensionalStorage.MODID, DimensionalStorage.NAME);
-        add("item.dimensionalstorage.antimatter.stable", "§aStable");
-        add("item.dimensionalstorage.antimatter.unstable", "§o§cUnstable");
+        add("item.dimensionalstorage.darkmatter.stable", "§aStable");
+        add("item.dimensionalstorage.darkmatter.unstable", "§o§cUnstable");
     }
 }

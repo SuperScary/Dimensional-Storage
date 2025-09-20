@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public interface IStorage {
-    /* ——— Implementers override one or both ——— */
 
     default Optional<IItemHandler> createItemHandler(ItemStack stack) { return Optional.empty(); }
 
@@ -24,8 +23,6 @@ public interface IStorage {
                                                       @Nullable BlockEntity be, @Nullable Direction side) {
         return Optional.empty();
     }
-
-    /* ——— Tiny helpers to fetch the capability ——— */
 
     static @Nullable IItemHandler getItemHandler(ItemStack stack) {
         return stack.getCapability(Capabilities.ItemHandler.ITEM);
@@ -36,8 +33,6 @@ public interface IStorage {
         BlockEntity be = level.getBlockEntity(pos);
         return level.getCapability(Capabilities.ItemHandler.BLOCK, pos, state, be, side);
     }
-
-    /* ——— Registration glue you call once ——— */
 
     static void registerItemHandlers(RegisterCapabilitiesEvent event, ItemLike... items) {
         event.registerItem(

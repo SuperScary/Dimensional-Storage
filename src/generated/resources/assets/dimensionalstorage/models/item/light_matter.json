@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "dimensionalstorage:item/antimatter"
+    "layer0": "dimensionalstorage:item/light_matter"
   }
 }
