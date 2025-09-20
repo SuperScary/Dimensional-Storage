@@ -1,0 +1,16 @@
+{
+  "block.dimensionalstorage.deepslate_drakium_ore": "Deepslate Drakium Ore",
+  "block.dimensionalstorage.drakium_block": "Drakium Block",
+  "block.dimensionalstorage.drakium_ore": "Drakium Ore",
+  "block.dimensionalstorage.end_stone_drakium_ore": "End Stone Drakium Ore",
+  "block.dimensionalstorage.nether_drakium_ore": "Nether Drakium Ore",
+  "block.dimensionalstorage.raw_drakium_block": "Block of Raw Drakium",
+  "item.dimensionalstorage.antimatter": "Antimatter",
+  "item.dimensionalstorage.antimatter.stable": "§aStable",
+  "item.dimensionalstorage.antimatter.unstable": "§o§cUnstable",
+  "item.dimensionalstorage.drakium_ingot": "Drakium Ingot",
+  "item.dimensionalstorage.drakium_nugget": "Drakium Nugget",
+  "item.dimensionalstorage.electric_circuit_base": "Electric Circuit Base",
+  "item.dimensionalstorage.raw_drakium_ore": "Raw Drakium Ore",
+  "itemGroup.dimensionalstorage": "Dimensional Storage"
+}

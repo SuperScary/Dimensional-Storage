@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "dimensionalstorage:block/drakium_block"
+    }
+  }
+}

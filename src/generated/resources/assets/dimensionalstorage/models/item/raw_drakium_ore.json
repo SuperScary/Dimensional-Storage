@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "dimensionalstorage:item/raw_drakium_ore"
+  }
+}

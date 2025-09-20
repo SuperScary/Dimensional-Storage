@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "dimensionalstorage:raw_drakium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "dimensionalstorage:raw_drakium_ore"
+  }
+}

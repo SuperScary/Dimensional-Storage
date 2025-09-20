@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_drakium_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "dimensionalstorage:drakium_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "dimensionalstorage:crafting/drakium_ingot_from_nugget"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_drakium_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "dimensionalstorage:crafting/drakium_ingot_from_nugget"
+    ]
+  }
+}

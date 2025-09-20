@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 1800,
+  "experience": 0.0,
+  "ingredient": {
+    "item": "dimensionalstorage:raw_drakium_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "dimensionalstorage:drakium_block"
+  }
+}

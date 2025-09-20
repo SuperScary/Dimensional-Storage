@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "dimensionalstorage:block/deepslate_drakium_ore"
+  }
+}
