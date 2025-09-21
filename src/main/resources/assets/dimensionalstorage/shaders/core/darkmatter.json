@@ -1,0 +1,17 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "src_alpha",
+    "dstrgb": "one_minus_src_alpha"
+  },
+  "vertex": "dimensionalstorage:darkmatter",
+  "fragment": "dimensionalstorage:darkmatter",
+  "attributes": [ "Position", "Color" ],
+  "samplers": [ { "name": "Noise0" }, { "name": "Noise1" } ],
+  "uniforms": [
+    { "name": "ModelViewMat", "type": "matrix4x4" },
+    { "name": "ProjMat",      "type": "matrix4x4" },
+    { "name": "GameTime",     "type": "float"     },
+    { "name": "CameraPos",    "type": "vec3"      }
+  ]
+}

@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.superscary.dimensionalstorage.DSTab;
+import net.superscary.dimensionalstorage.block.DarkMatterBlock;
 import net.superscary.dimensionalstorage.block.base.BaseBlock;
 import net.superscary.dimensionalstorage.block.BlockDefinition;
 import net.superscary.dimensionalstorage.block.base.DecorativeBlock;
@@ -34,6 +35,9 @@ public class DSBlocks {
     public static final BlockDefinition<OreBlock> DEEPSLATE_DRAKIUM_ORE = reg("Deepslate Drakium Ore", () -> new OreBlock(1, 3, OreBlock.Type.DEEPSLATE));
     public static final BlockDefinition<OreBlock> END_STONE_DRAKIUM_ORE = reg("End Stone Drakium Ore", () -> new OreBlock(1, 3, OreBlock.Type.END));
     public static final BlockDefinition<OreBlock> NETHER_DRAKIUM_ORE = reg("Nether Drakium Ore", () -> new OreBlock(1, 3, OreBlock.Type.NETHER));
+
+    public static final BlockDefinition<DarkMatterBlock> DARK_MATTER_BLOCK = reg("Dark Matter Block", DarkMatterBlock::new);
+    //public static final BlockDefinition<DecorativeBlock> LIGHT_MATTER_BLOCK = reg("Light Matter Block", DecorativeBlock::new);
 
     public static List<BlockDefinition<?>> getBlocks () {
         return Collections.unmodifiableList(BLOCKS);

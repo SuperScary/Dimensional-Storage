@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.superscary.dimensionalstorage.core.DimensionalStorage;
+import net.superscary.dimensionalstorage.registries.DSTags;
 import net.superscary.dimensionalstorage.util.IDataProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +32,9 @@ public class ModItemTagGenerator extends ItemTagsProvider implements IDataProvid
 
         this.tag(Tags.Items.NUGGETS)
                 .add(DRAKIUM_NUGGET.asItem());
+
+        this.tag(DSTags.Items.MATTER_ITEM)
+                .add(DARK_MATTER.asItem(), LIGHT_MATTER.asItem());
     }
 
     @Override

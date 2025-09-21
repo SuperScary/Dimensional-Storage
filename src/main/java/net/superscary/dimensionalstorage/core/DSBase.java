@@ -9,10 +9,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.superscary.dimensionalstorage.DSTab;
-import net.superscary.dimensionalstorage.registries.DSBlocks;
-import net.superscary.dimensionalstorage.registries.DSCapabilities;
-import net.superscary.dimensionalstorage.registries.DSItems;
-import net.superscary.dimensionalstorage.registries.DSDataComponents;
+import net.superscary.dimensionalstorage.registries.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -32,13 +29,15 @@ public abstract class DSBase implements DimensionalStorage {
             if (event.getRegistryKey() == Registries.CREATIVE_MODE_TAB) DSTab.init(BuiltInRegistries.CREATIVE_MODE_TAB);
         });
 
-        container.getEventBus().addListener(DSCapabilities::register);
+        modEventBus.addListener(DSCapabilities::register);
+        modEventBus.addListener(DSBER::register);
     }
 
     private void register(IEventBus modEventBus) {
         DSBlocks.REGISTRY.register(modEventBus);
         DSItems.REGISTRY.register(modEventBus);
         DSDataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
+        DSBlockEntities.REGISTRY.register(modEventBus);
     }
 
     @Override

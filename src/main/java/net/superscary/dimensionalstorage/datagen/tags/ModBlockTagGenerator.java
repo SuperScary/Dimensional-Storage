@@ -7,6 +7,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.superscary.dimensionalstorage.core.DimensionalStorage;
+import net.superscary.dimensionalstorage.registries.DSTags;
 import net.superscary.dimensionalstorage.util.IDataProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,5 +45,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider implements IDataProv
                 .add(END_STONE_DRAKIUM_ORE.block())
                 .add(DEEPSLATE_DRAKIUM_ORE.block())
                 .add(NETHER_DRAKIUM_ORE.block());
+
+        this.tag(DSTags.Blocks.MATTER_BLOCK)
+                .add(DARK_MATTER_BLOCK.block());
     }
 }
