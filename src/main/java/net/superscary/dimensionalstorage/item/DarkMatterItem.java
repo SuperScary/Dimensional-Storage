@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
@@ -25,6 +24,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.superscary.dimensionalstorage.item.base.BaseItem;
 import net.superscary.dimensionalstorage.registries.DSDataComponents;
+import net.superscary.dimensionalstorage.registries.DSSounds;
 import net.superscary.dimensionalstorage.storage.IStorage;
 import net.superscary.dimensionalstorage.storage.StorageItemHandler;
 import org.jetbrains.annotations.NotNull;
@@ -63,11 +63,11 @@ public class DarkMatterItem extends BaseItem implements IStorage {
             double distSqr = toCenter.lengthSqr();
 
             if (distSqr <= KILL_DIST_SQR) {
-                // level.playSound(null, it.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5f, 1.2f);
-                if (handler.insertItem(0, it.getItem(), true).isEmpty() || handler.insertItem(0, it.getItem(), true).is(it.getItem().getItem())) {
+                //level.playSound(null, it.blockPosition(), DSSounds.DARK_MATTER_INSERT.get(), SoundSource.BLOCKS, 1f, 0.8f);
+                if (IStorage.canInsertAny(handler, 0, it.getItem())) {
                     handler.insertItem(0, it.getItem(), false);
+                    it.discard();
                 }
-                it.discard();
                 continue;
             }
 
@@ -125,8 +125,8 @@ public class DarkMatterItem extends BaseItem implements IStorage {
             level.addFreshEntity(itemEnt);
 
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.SNOWBALL_THROW, SoundSource.PLAYERS, 0.8f,
-                    0.02f);
+                    DSSounds.DARK_MATTER_THROW.get(), SoundSource.PLAYERS, 1f,
+                    1f);
 
             player.getCooldowns().addCooldown(this, 6); // 0.3s
         }
@@ -173,7 +173,13 @@ public class DarkMatterItem extends BaseItem implements IStorage {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.add(Component.translatable("item.dimensionalstorage.darkmatter." + this.getStability(stack).name().toLowerCase()));
+        var holder = IStorage.getItemHandler(stack);
+
+        if (IStorage.getItemHandler(stack) != null && holder.getStackInSlot(0) != ItemStack.EMPTY && holder.getStackInSlot(0).getCount() > 0) {
+            int count = holder.getStackInSlot(0).getCount();
+            tooltipComponents.add(Component.translatable("item.dimensionalstorage.dark_matter.inventory", count, Component.translatable(holder.getStackInSlot(0).getDescriptionId())));
+        }
+        tooltipComponents.add(Component.translatable("item.dimensionalstorage.dark_matter." + this.getStability(stack).name().toLowerCase()));
     }
 
     @Override

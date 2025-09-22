@@ -7,6 +7,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.superscary.dimensionalstorage.core.DimensionalStorage;
+import net.superscary.dimensionalstorage.datagen.data.SoundProvider;
 import net.superscary.dimensionalstorage.datagen.language.ModEnLangProvider;
 import net.superscary.dimensionalstorage.datagen.loot.ModLootTableProvider;
 import net.superscary.dimensionalstorage.datagen.models.BlockModelProvider;
@@ -16,6 +17,8 @@ import net.superscary.dimensionalstorage.datagen.recipes.SmeltingRecipes;
 import net.superscary.dimensionalstorage.datagen.tags.ModBlockTagGenerator;
 import net.superscary.dimensionalstorage.datagen.tags.ModItemTagGenerator;
 import net.superscary.dimensionalstorage.datagen.world.WorldGenProvider;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiFunction;
@@ -24,7 +27,7 @@ import java.util.function.BiFunction;
 public class DataGenerators {
 
     @SubscribeEvent
-    public static void gather (GatherDataEvent event) {
+    public static void gather (@NotNull GatherDataEvent event) {
         var generator = event.getGenerator();
         var registries = event.getLookupProvider();
         var pack = generator.getVanillaPack(true);
@@ -35,7 +38,7 @@ public class DataGenerators {
         pack.addProvider(output -> new WorldGenProvider(output, registries));
 
         // SOUNDS
-        //pack.addProvider(packOutput -> new SoundProvider(packOutput, existingFileHelper));
+        pack.addProvider(packOutput -> new SoundProvider(packOutput, existingFileHelper));
 
         // LOOT TABLE
         pack.addProvider(bindRegistries(ModLootTableProvider::new, registries));
@@ -60,7 +63,8 @@ public class DataGenerators {
         pack.addProvider(output -> localization);
     }
 
-    private static <T extends DataProvider> DataProvider.Factory<T> bindRegistries (BiFunction<PackOutput, CompletableFuture<HolderLookup.Provider>, T> factory, CompletableFuture<HolderLookup.Provider> factories) {
+    @Contract(pure = true)
+    private static <T extends DataProvider> DataProvider.@NotNull Factory<T> bindRegistries (BiFunction<PackOutput, CompletableFuture<HolderLookup.Provider>, T> factory, CompletableFuture<HolderLookup.Provider> factories) {
         return pOutput -> factory.apply(pOutput, factories);
     }
 

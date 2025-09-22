@@ -1,0 +1,24 @@
+{
+  "dark_matter_throw": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "dimensionalstorage:dark_matter_throw",
+        "stream": true,
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "sound.dimensionalstorage.dark_matter_throw"
+  },
+  "void": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "dimensionalstorage:void",
+        "stream": true,
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "sound.dimensionalstorage.void"
+  }
+}

@@ -13,10 +13,11 @@ public class DarkMatterBlock extends BaseBlock implements EntityBlock {
 
     public DarkMatterBlock() {
         super(BlockBehaviour.Properties.of()
-                .noCollission()
                 .strength(-1.0F, 3600000.0F)
                 .explosionResistance(6000000.0F)
-                .lightLevel(state -> 0));
+                .lightLevel(state -> 0)
+                .noOcclusion()
+                .isValidSpawn((state, getter, pos, type) -> false));
     }
 
     @Override

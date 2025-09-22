@@ -23,7 +23,7 @@ void main() {
 
     float depth = clamp(n0*0.6 + n1*0.5, 0.0, 1.0);
 
-    // “absorb light”: ignore lightmap completely; output very dark with subtle movement
+    // "absorb light": ignore lightmap completely; output very dark with subtle movement
     float alpha = 0.95; // slightly translucent helps the shimmer read
     vec3 color = mix(vec3(0.0), vec3(0.02), depth); // near-black with faint depth
 

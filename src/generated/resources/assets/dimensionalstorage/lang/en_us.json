@@ -7,12 +7,18 @@
   "block.dimensionalstorage.nether_drakium_ore": "Nether Drakium Ore",
   "block.dimensionalstorage.raw_drakium_block": "Block of Raw Drakium",
   "item.dimensionalstorage.dark_matter": "Dark Matter",
-  "item.dimensionalstorage.darkmatter.stable": "§aStable",
-  "item.dimensionalstorage.darkmatter.unstable": "§o§cUnstable",
+  "item.dimensionalstorage.dark_matter.inventory": "%sx: %s",
+  "item.dimensionalstorage.dark_matter.stable": "§aStable",
+  "item.dimensionalstorage.dark_matter.unstable": "§o§cUnstable",
+  "item.dimensionalstorage.dark_matter_magnet": "Dark Matter Magnet",
+  "item.dimensionalstorage.dark_matter_magnet.active": "§aActive",
+  "item.dimensionalstorage.dark_matter_magnet.inactive": "§o§cInactive",
   "item.dimensionalstorage.drakium_ingot": "Drakium Ingot",
   "item.dimensionalstorage.drakium_nugget": "Drakium Nugget",
   "item.dimensionalstorage.electric_circuit_base": "Electric Circuit Base",
   "item.dimensionalstorage.light_matter": "Light Matter",
   "item.dimensionalstorage.raw_drakium_ore": "Raw Drakium Ore",
-  "itemGroup.dimensionalstorage": "Dimensional Storage"
+  "itemGroup.dimensionalstorage": "Dimensional Storage",
+  "sound.dimensionalstorage.dark_matter_throw": "Dark Matter Throw",
+  "sound.dimensionalstorage.void": "Void"
 }

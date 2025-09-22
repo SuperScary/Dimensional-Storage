@@ -3,11 +3,17 @@ package net.superscary.dimensionalstorage.datagen.recipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.superscary.dimensionalstorage.core.DimensionalStorage;
+import net.superscary.dimensionalstorage.item.DarkMatterMagnetItem;
+import net.superscary.dimensionalstorage.registries.DSDataComponents;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
+import static net.minecraft.world.level.block.Blocks.LAPIS_BLOCK;
+import static net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK;
 import static net.superscary.dimensionalstorage.registries.DSBlocks.*;
 import static net.superscary.dimensionalstorage.registries.DSItems.*;
 
@@ -24,7 +30,27 @@ public class CraftingRecipes extends ModRecipeProvider {
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput consumer) {
+        magnet(consumer);
         misc(consumer);
+    }
+
+    private void magnet(RecipeOutput consumer) {
+        ItemStack dm = new ItemStack(DARK_MATTER);
+        dm.set(DSDataComponents.DARKMATTER_MAGNET_ACTIVE.get(), DarkMatterMagnetItem.Active.ACTIVE);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DARK_MATTER_MAGNET, 1)
+                .pattern("IIR")
+                .pattern("D  ")
+                .pattern("IIL")
+                .define('I', DRAKIUM_INGOT)
+                .define('R', REDSTONE_BLOCK)
+                .define('D', Ingredient.of(dm))
+                .define('L', LAPIS_BLOCK)
+                .unlockedBy("has_drakium_ingot", has(DRAKIUM_INGOT))
+                .unlockedBy("has_drakium_dark_matter", has(DARK_MATTER))
+                .unlockedBy("has_redstone_block", has(REDSTONE_BLOCK))
+                .unlockedBy("has_lapis_block", has(LAPIS_BLOCK))
+                .save(consumer, DimensionalStorage.getResource("crafting/magnet"));
     }
 
     protected void misc (RecipeOutput consumer) {

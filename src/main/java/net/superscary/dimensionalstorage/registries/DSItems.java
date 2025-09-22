@@ -9,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.superscary.dimensionalstorage.DSTab;
 import net.superscary.dimensionalstorage.core.DimensionalStorage;
 import net.superscary.dimensionalstorage.item.DarkMatterItem;
+import net.superscary.dimensionalstorage.item.DarkMatterMagnetItem;
 import net.superscary.dimensionalstorage.item.LightMatterItem;
 import net.superscary.dimensionalstorage.item.base.BaseItem;
 import net.superscary.dimensionalstorage.item.ItemDefinition;
@@ -33,6 +34,8 @@ public class DSItems {
 
     public static final ItemDefinition<DarkMatterItem> DARK_MATTER = item("Dark Matter", DarkMatterItem::new);
     public static final ItemDefinition<LightMatterItem> LIGHT_MATTER = item("Light Matter", LightMatterItem::new);
+
+    public static final ItemDefinition<DarkMatterMagnetItem> DARK_MATTER_MAGNET = item("Dark Matter Magnet", DarkMatterMagnetItem::new);
 
     public static final ItemDefinition<BaseItem> ELECTRIC_CIRCUIT_BASE = item("Electric Circuit Base", BaseItem::new);
 

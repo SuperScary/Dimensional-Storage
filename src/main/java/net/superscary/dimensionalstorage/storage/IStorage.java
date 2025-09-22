@@ -11,13 +11,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.IItemHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public interface IStorage {
 
-    default Optional<IItemHandler> createItemHandler(ItemStack stack) { return Optional.empty(); }
+    default Optional<IItemHandler> createItemHandler(ItemStack stack) {
+        return Optional.empty();
+    }
 
     default Optional<IItemHandler> createBlockHandler(Level level, BlockPos pos, BlockState state,
                                                       @Nullable BlockEntity be, @Nullable Direction side) {
@@ -26,6 +29,34 @@ public interface IStorage {
 
     static @Nullable IItemHandler getItemHandler(ItemStack stack) {
         return stack.getCapability(Capabilities.ItemHandler.ITEM);
+    }
+
+    /**
+     * Returns true if the entire stack can go into the given slot (no remainder).
+     */
+    static boolean canInsertAll(@NotNull IItemHandler handler, int slot, @NotNull ItemStack toInsert) {
+        if (toInsert.isEmpty()) return false;
+        if (slot < 0 || slot >= handler.getSlots()) return false;
+        if (!handler.isItemValid(slot, toInsert)) return false;
+
+        int limit = Math.min(handler.getSlotLimit(slot), toInsert.getMaxStackSize());
+        if (limit <= 0) return false;
+
+        // SIMULATE the insert; this honors any custom handler logic.
+        ItemStack remainder = handler.insertItem(slot, toInsert.copy(), true);
+        return remainder.isEmpty();
+    }
+
+    /**
+     * Returns true if at least one item from the stack could be inserted into the slot.
+     */
+    static boolean canInsertAny(@NotNull IItemHandler handler, int slot, @NotNull ItemStack toInsert) {
+        if (toInsert.isEmpty()) return false;
+        if (slot < 0 || slot >= handler.getSlots()) return false;
+        if (!handler.isItemValid(slot, toInsert)) return false;
+
+        ItemStack remainder = handler.insertItem(slot, new ItemStack(toInsert.getItem(), toInsert.getCount()), true);
+        return remainder.isEmpty();
     }
 
     static @Nullable IItemHandler getBlockHandler(Level level, BlockPos pos, @Nullable Direction side) {

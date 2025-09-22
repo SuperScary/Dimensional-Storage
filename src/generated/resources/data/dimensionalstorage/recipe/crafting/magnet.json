@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "dimensionalstorage:dark_matter"
+    },
+    "I": {
+      "item": "dimensionalstorage:drakium_ingot"
+    },
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "pattern": [
+    "IIR",
+    "D  ",
+    "IIL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "dimensionalstorage:dark_matter_magnet"
+  }
+}

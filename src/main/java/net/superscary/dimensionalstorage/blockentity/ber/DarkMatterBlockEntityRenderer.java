@@ -6,8 +6,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.AABB;
 import net.superscary.dimensionalstorage.blockentity.DarkMatterBlockEntity;
+import net.superscary.dimensionalstorage.core.DimensionalStorage;
 import net.superscary.dimensionalstorage.registries.shader.DSShaders;
 import net.superscary.dimensionalstorage.render.DSRenderTypes;
 
@@ -20,6 +22,18 @@ public class DarkMatterBlockEntityRenderer implements BlockEntityRenderer<DarkMa
     public void render(DarkMatterBlockEntity be, float partialTick, PoseStack pose,
                        MultiBufferSource buffers, int packedLight, int packedOverlay) {
         if (DSShaders.DARK_MATTER == null) return;
+
+        // Set up shader uniforms
+        var shader = DSShaders.DARK_MATTER;
+        shader.safeGetUniform("GameTime").set((float) (System.currentTimeMillis() / 1000.0));
+        
+        // Use block position as camera position fallback
+        var blockPos = be.getBlockPos();
+        shader.safeGetUniform("CameraPos").set((float) blockPos.getX(), (float) blockPos.getY(), (float) blockPos.getZ());
+        
+        // Bind noise textures
+        shader.setSampler("Noise0", ResourceLocation.fromNamespaceAndPath(DimensionalStorage.MODID, "textures/misc/darkmatter_noise0.png"));
+        shader.setSampler("Noise1", ResourceLocation.fromNamespaceAndPath(DimensionalStorage.MODID, "textures/misc/darkmatter_noise1.png"));
 
         // Draw an inner cube (black hole core)
         pose.pushPose();

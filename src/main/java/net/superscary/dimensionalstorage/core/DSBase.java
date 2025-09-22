@@ -36,8 +36,9 @@ public abstract class DSBase implements DimensionalStorage {
     private void register(IEventBus modEventBus) {
         DSBlocks.REGISTRY.register(modEventBus);
         DSItems.REGISTRY.register(modEventBus);
-        DSDataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
+        DSDataComponents.REGISTRY.register(modEventBus);
         DSBlockEntities.REGISTRY.register(modEventBus);
+        DSSounds.REGISTRY.register(modEventBus);
     }
 
     @Override
